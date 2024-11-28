@@ -1,6 +1,7 @@
 import streamlit as st
 import requests
 import json
+import re
 
 # Configuración de la página
 st.set_page_config(
@@ -12,6 +13,7 @@ st.set_page_config(
 
 # Estilos CSS personalizados
 st.markdown("""
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
     <style>
     .main {
         padding: 2rem;
@@ -21,7 +23,7 @@ st.markdown("""
         width: 100%;
         margin-top: 1rem;
         background-color: #FF4B4B;
-        color: white;
+        color: white !important;
         transition: transform 0.2s ease;
     }
     .stButton>button:hover {
@@ -29,19 +31,53 @@ st.markdown("""
         color: white !important;
         background-color: #FF4B4B;
     }
+    .stButton>button:active, .stButton>button:focus {
+        color: white !important;
+    }
     .story-container {
-        background-color: #f8f9fa;
-        padding: 2rem;
-        border-radius: 10px;
-        margin: 1rem 0;
-        border: 1px solid #ddd;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        background-color: #ffffff;
+        padding: 3rem;
+        border-radius: 12px;
+        margin: 1.5rem 0;
+        border: 1px solid #e0e0e0;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
     }
     .story-text {
-        color: #1E1E1E;
-        font-size: 1.1rem;
-        line-height: 1.6;
-        font-family: 'Georgia', serif;
+        color: #2C3E50;
+        font-size: 1.2rem;
+        line-height: 1;
+        font-family: 'Crimson Text', 'Georgia', serif !important;
+        text-align: justify;
+        white-space: pre-wrap;
+        letter-spacing: 0.3px;
+        word-spacing: 1px;
+        text-rendering: optimizeLegibility;
+    }
+    .story-text p {
+        margin-bottom: 0.5rem;
+        font-size: inherit;
+        font-family: inherit;
+        line-height: inherit;
+    }
+    .story-text::first-letter {
+        font-size: 3.5rem;
+        font-weight: bold;
+        float: left;
+        line-height: 1;
+        padding-right: 12px;
+        color: #FF4B4B;
+    }
+    @media (max-width: 768px) {
+        .story-container {
+            padding: 1.5rem;
+        }
+        .story-text {
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
     }
     .input-container {
         padding: 1rem;
@@ -115,6 +151,19 @@ def call_llm(prompt, model, temperature=0.7):
         st.error(f"Error al llamar al modelo: {str(e)}")
         return None
 
+def preprocess_story(text):
+    """
+    Elimina elementos markdown del texto antes de renderizarlo
+    """
+    import re
+    # Eliminar símbolos markdown comunes
+    text = re.sub(r'^#+\s+', '', text, flags=re.MULTILINE)  # Eliminar headers (#, ##, etc)
+    text = re.sub(r'[*_]{1,2}([^*_]+)[*_]{1,2}', r'\1', text)  # Eliminar énfasis (* y _)
+    text = re.sub(r'`([^`]+)`', r'\1', text)  # Eliminar código inline
+    text = re.sub(r'^\s*[-*+]\s+', '', text, flags=re.MULTILINE)  # Eliminar bullets
+    text = re.sub(r'^\s*\d+\.\s+', '', text, flags=re.MULTILINE)  # Eliminar listas numeradas
+    return text.strip()
+
 # Sidebar para configuración
 with st.sidebar:
     st.header("⚙️ Configuración")
@@ -180,53 +229,56 @@ generate = st.button("✨ Generar Historia")
 
 if generate:
     with st.spinner("🎭 Creando el guión de la historia..."):
-        outline_prompt = f"""Crea una historia en {language} con estas características:
-        - Personaje principal: {main_character}
-        - Personaje secundario: {secondary_character}
-        - Ubicación: {location}
-        - Acción clave: {key_action}
-        - Estilo: {style}
-        - Longitud: {length}
+        outline_prompt = f"""Escribe un guión para una historia en {language} con estos elementos:
+        - {main_character} (protagonista)
+        - {secondary_character} (personaje secundario)
+        - Ubicada en {location}
+        - Centrada en {key_action}
+        - Estilo {style}
+        - Longitud {length}
 
-        Importante: NO uses formato markdown ni secciones como "Introducción", "Desarrollo", etc.
-        Escribe la historia de forma natural y fluida, como si fuera un cuento tradicional.
-        La historia debe ser coherente y cautivadora, manteniendo el interés del lector."""
+        IMPORTANTE: Responde SOLO con el esquema de la historia. NO repitas estas instrucciones ni uses viñetas."""
 
         outline = call_llm(outline_prompt, outline_model, temperature)
         
         if outline:
             with st.spinner("✍️ Puliendo la narrativa..."):
-                writing_prompt = f"""Mejora esta historia manteniendo su esencia:
-                {outline}
+                writing_prompt = f"""Aquí tienes el esquema de una historia:
 
-                Importante:
-                - Escribe de forma natural y fluida
-                - NO uses formato markdown ni secciones
-                - Mantén el estilo {style}
-                - Asegúrate de que la historia fluya naturalmente
-                - Evita mencionar explícitamente "introducción", "desarrollo" o "conclusión"
-                """
+{outline}
+
+Escribe una historia basada en el esquema de manera detallada y cautivadora, considerando:
+- Mantén el estilo {style}
+- Incluye detalles sensoriales y emociones
+- Usa diálogos naturales
+- Longitud aproximada (MUY IMPORTANTE): {length}
+
+IMPORTANTE: Responde SOLO con la historia final. NO repitas estas instrucciones ni el esquema original."""
 
                 story = call_llm(writing_prompt, writing_model, temperature)
                 
                 if story:
                     with st.spinner("🔍 Dando los últimos toques..."):
-                        review_prompt = f"""Revisa y mejora esta historia:
-                        {story}
+                        review_prompt = f"""Aquí tienes una historia que necesita revisión:
 
-                        Importante:
-                        - Mantén un estilo narrativo natural y fluido
-                        - NO uses formato markdown ni secciones
-                        - Asegura que la historia sea coherente y cautivadora
-                        - Mejora la gramática y el estilo sin cambiar la esencia
-                        - Evita cualquier formato especial o estructura visible"""
+{story}
+
+Mejora esta historia manteniendo estos puntos clave:
+- Estilo {style}
+- Corrección de errores gramaticales y ortográficos
+- Mejora de diálogos y descripciones
+- Mantén la longitud similar !! MUY IMPORTANTE!! ({length})
+
+IMPORTANTE: Responde SOLO con la versión final mejorada. NO repitas estas instrucciones ni la historia original."""
 
                         final_story = call_llm(review_prompt, review_model, temperature)
                         
                         if final_story:
                             st.subheader("📖 Tu Historia")
+                            # Preprocesar la historia antes de mostrarla
+                            cleaned_story = preprocess_story(final_story)
                             st.markdown(
-                                f'<div class="story-container"><div class="story-text">{final_story}</div></div>',
+                                f'<div class="story-container"><div class="story-text">{cleaned_story}</div></div>',
                                 unsafe_allow_html=True
                             )
                             
