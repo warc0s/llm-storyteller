@@ -146,17 +146,15 @@ MODEL_DISPLAY_NAMES = {
 def call_llm(prompt, model, temperature=0.7):
     try:
         response = client.chat.completions.create(
-            extra_headers={
-                "HTTP-Referer": "https://github.com/warc0s/LLM_StoryTeller",
-                "X-Title": "LLM StoryTeller"
-            },
-            extra_body={
-                "model": model
-            },
+            model=model,
             messages=[
                 {"role": "user", "content": prompt}
             ],
-            temperature=temperature
+            temperature=temperature,
+            extra_headers={
+                "HTTP-Referer": "https://github.com/warc0s/LLM_StoryTeller",
+                "X-Title": "LLM StoryTeller"
+            }
         )
         return response.choices[0].message.content
     except Exception as e:
