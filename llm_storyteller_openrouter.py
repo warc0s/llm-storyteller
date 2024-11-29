@@ -13,10 +13,18 @@ st.set_page_config(
 )
 
 # Initialize OpenRouter client
-client = OpenAI(
-    base_url="https://openrouter.ai/api/v1",
-    api_key=st.secrets["OPENROUTER_API_KEY"],
-)
+try:
+    client = OpenAI(
+        base_url="https://openrouter.ai/api/v1",
+        api_key=st.secrets["OPENROUTER_API_KEY"],
+        default_headers={
+            "HTTP-Referer": "https://github.com/luisalvarez246/LLM_StoryTeller",
+            "X-Title": "LLM StoryTeller",
+        }
+    )
+except Exception as e:
+    st.error(f"Error al inicializar el cliente OpenAI: {str(e)}")
+    st.stop()
 
 # Estilos CSS personalizados
 st.markdown("""
