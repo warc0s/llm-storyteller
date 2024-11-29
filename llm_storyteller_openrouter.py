@@ -160,9 +160,9 @@ def call_llm(prompt, selected_model, temperature=0.7):
 
         completion = client.chat.completions.create(
             model=selected_model,
-            extra_headers={
+            headers={
                 "HTTP-Referer": "https://github.com/luisalvarez246/LLM_StoryTeller",
-                "X-Title": "LLM StoryTeller",
+                "X-Title": "LLM StoryTeller"
             },
             extra_body={
                 "models": models
