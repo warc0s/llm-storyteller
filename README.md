@@ -1,6 +1,6 @@
 # 📚 LLM StoryTeller
 
-![Project Banner](path/to/banner_image.png)
+![Project Banner](https://github.com/warc0s/llm-storyteller/blob/main/images/banner.png)
 
 Welcome to **LLM StoryTeller**, an interactive web application that leverages Large Language Models (LLMs) to help you craft captivating stories effortlessly. Whether you're a student, writer, or enthusiast, LLM StoryTeller provides a seamless experience to generate, refine, and download your unique narratives.
 
