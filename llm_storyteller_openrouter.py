@@ -3,17 +3,6 @@ import requests
 import json
 import re
 from openai import OpenAI
-from os import getenv
-from dotenv import load_dotenv
-
-# Load environment variables
-load_dotenv()
-
-# Initialize OpenRouter client
-client = OpenAI(
-    base_url="https://openrouter.ai/api/v1",
-    api_key=getenv("OPENROUTER_API_KEY"),
-)
 
 # Configuración de la página
 st.set_page_config(
@@ -21,6 +10,12 @@ st.set_page_config(
     page_icon="📚",
     layout="wide",
     initial_sidebar_state="expanded"
+)
+
+# Initialize OpenRouter client
+client = OpenAI(
+    base_url="https://openrouter.ai/api/v1",
+    api_key=st.secrets["OPENROUTER_API_KEY"],
 )
 
 # Estilos CSS personalizados
