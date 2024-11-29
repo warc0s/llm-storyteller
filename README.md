@@ -10,7 +10,7 @@ Note: The application interface is in Spanish, but don’t worry! We will walk y
 
 ---
 
-### Try It Online on Streamlit Cloud
+### 🆕! Try It Online on Streamlit Cloud ☁️
 
 Now, you can experience **LLM StoryTeller** directly on **Streamlit Cloud**, thanks to the integration of free models provided by OpenRouter. This version showcases the functionality of the interface with a simplified and accessible experience. Unlike the original `llm_storyteller.py` script designed for local use with your own machine models, this online version (`llm_storyteller_openrouter.py`) is optimized for public interaction and can be accessed at the following link:
 
