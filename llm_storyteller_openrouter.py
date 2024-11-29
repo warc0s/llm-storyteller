@@ -15,14 +15,12 @@ st.set_page_config(
 # Initialize OpenRouter client
 try:
     client = OpenAI(
-        base_url="https://openrouter.ai/api/v1",
         api_key=st.secrets["OPENROUTER_API_KEY"]
     )
-    # Set default headers after client initialization
-    client.headers.update({
-        "HTTP-Referer": "https://github.com/warc0s/LLM_StoryTeller",
-        "X-Title": "LLM StoryTeller"
-    })
+    # Configure base URL and headers
+    client.base_url = "https://openrouter.ai/api/v1"
+    client.headers["HTTP-Referer"] = "https://github.com/warc0s/LLM_StoryTeller"
+    client.headers["X-Title"] = "LLM StoryTeller"
 except Exception as e:
     st.error(f"Error al inicializar el cliente OpenAI: {str(e)}")
     st.stop()
