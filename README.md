@@ -16,10 +16,8 @@ Note: The application interface is in Spanish, but don’t worry! We will walk y
 - [🚀 Features](#-features)
 - [🔧 Installation](#-installation)
 - [🛠️ Usage](#️-usage)
-- [📸 Screenshots](#-screenshots)
 - [⚙️ Configuration](#️-configuration)
 - [💡 How It Works](#-how-it-works)
-- [🤝 Contributing](#-contributing)
 - [📄 License](#-license)
 - [📬 Contact](#-contact)
 
