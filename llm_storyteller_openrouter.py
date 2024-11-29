@@ -129,7 +129,7 @@ st.title("🌟 LLM StoryTeller")
 
 st.info("""
 **Información sobre el proceso:**
-Cada paso del proceso creativo puede utilizar dos modelos de IA diferentes (Llama 1B o Qwen 1.5B)\n
+Cada paso del proceso creativo puede utilizar modelos de IA diferentes (Llama, Gemma, Qwen...)\n
 Paso 1: Generación del guión de la historia. \n
 Paso 2: Escritura como tal de la historia. \n
 Paso 3: Mejora de gramática y coherencia general. 
