@@ -1,4 +1,4 @@
-# 📚 LLM StoryTeller
+# 📚 LLM StoryTeller - Create Engaging Stories with AI
 
 ![Project Banner](https://github.com/warc0s/llm-storyteller/blob/main/images/banner.png)
 
@@ -101,7 +101,7 @@ Fill in the main character, secondary character, location, key action, desired l
 
 ### 3. **Generate Story**
 
-Click on the "✨ Generate Story" button. The app will process your inputs through the selected models to create your story.
+Click on the "✨ Generar Historia" button. The app will process your inputs through the selected models to create your story.
 
 ![Generate Button](https://github.com/warc0s/llm-storyteller/blob/main/images/button.png)
 
@@ -118,7 +118,7 @@ Each step's progress is displayed with clear messages, giving you transparency a
 
 ### 5. **View and Download**
 
-Once generated, your story will be displayed in a formatted container. You can download the final version as a `.txt` file.
+Once generated, your story will be displayed in a formatted container. You can download the final version as a `.txt` file by clicking on the button "📩 Descargar Historia".
 
 ![Generated Story](https://github.com/warc0s/llm-storyteller/blob/main/images/historia.png)
 
