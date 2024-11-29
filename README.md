@@ -4,6 +4,8 @@
 
 Welcome to **LLM StoryTeller**, an interactive web application that leverages Large Language Models (LLMs) to help you craft captivating stories effortlessly. Whether you're a student, writer, or enthusiast, LLM StoryTeller provides a seamless experience to generate, refine, and download your unique narratives.
 
+Note: The application interface is in Spanish, but don’t worry! We will walk you through each step in detail in this README. The interface is intuitive, and with the included explanations and screenshots, you’ll find it easy to follow and understand the workflow. Here, you can see the main dashboard of the application:
+
 ![LLM StoryTeller Interface](https://github.com/warc0s/llm-storyteller/blob/main/images/dashboard.png)
 
 ---
