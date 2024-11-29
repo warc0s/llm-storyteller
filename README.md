@@ -28,6 +28,7 @@ Explore the power of AI storytelling visually and intuitively. Try it out now an
 - [🛠️ Usage](#️-usage)
 - [⚙️ Configuration](#️-configuration)
 - [💡 How It Works](#-how-it-works)
+- [📚 Story Examples](#-story-examples)
 - [📄 License](#-license)
 - [📬 Contact](#-contact)
 
@@ -177,6 +178,23 @@ To summarize, here’s a clear overview of how LLM StoryTeller works, as this st
 3. **Review and Refinement**: Finally, the story is polished for grammatical accuracy, coherence, and overall quality, ensuring the end result is compelling and well-written.
 
 This step-by-step process is optimized for smaller models, ensuring they can perform effectively and deliver results comparable to larger models. By guiding the LLM through these structured phases and incorporating **prompt engineering techniques**, LLM StoryTeller maximizes the potential of the models, ensuring they generate stories of superior quality compared to a single-step prompt.
+
+---
+
+## 📚 Story Examples
+
+You can explore examples of generated stories in the **`examples`** folder. This folder contains three stories, each showcasing the results from different models:
+
+1. **Fantasy Story**: Created entirely (all three steps) using **Gemma**.  
+   - Demonstrates rich detail and world-building with consistent quality across all phases.
+
+2. **Science Fiction Story**: Generated fully with **Llama**.  
+   - Highlights Llama’s ability to handle suspense and technical narratives effectively.
+
+3. **Comedy Romance Story**: Produced entirely with **Mistral**.  
+   - This example shows limitations in coherence and creativity, making it the least polished of the three.
+
+**Note:** To achieve better results, we encourage you to experiment with combining different models for each of the three steps (outline, writing, and refinement). For instance, you might use **Gemma** for outlining, **Llama** for writing, and **Mistral** for refinement to play to each model’s strengths and create a more balanced final story.
 
 ---
 
