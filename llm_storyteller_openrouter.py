@@ -18,7 +18,7 @@ try:
         base_url="https://openrouter.ai/api/v1",
         api_key=st.secrets["OPENROUTER_API_KEY"],
         default_headers={
-            "HTTP-Referer": "https://github.com/luisalvarez246/LLM_StoryTeller",
+            "HTTP-Referer": "https://github.com/warc0s/LLM_StoryTeller",
             "X-Title": "LLM StoryTeller",
         }
     )
@@ -160,20 +160,16 @@ def call_llm(prompt, selected_model, temperature=0.7):
 
         completion = client.chat.completions.create(
             model=selected_model,
-            headers={
-                "HTTP-Referer": "https://github.com/luisalvarez246/LLM_StoryTeller",
-                "X-Title": "LLM StoryTeller"
-            },
-            extra_body={
-                "models": models
-            },
             messages=[
                 {
                     "role": "user",
                     "content": prompt,
                 }
             ],
-            temperature=temperature
+            temperature=temperature,
+            extra_body={
+                "models": models
+            }
         )
         
         return completion.choices[0].message.content
