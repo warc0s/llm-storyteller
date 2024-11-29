@@ -183,18 +183,18 @@ This step-by-step process is optimized for smaller models, ensuring they can per
 
 ## 📚 Story Examples
 
-You can explore examples of generated stories in the **`examples`** folder. This folder contains three stories, each showcasing the results from different models:
+You can explore examples of generated stories (using the cloud version) in the **`examples`** folder. This folder contains three stories, each showcasing the results from different models:
 
-1. **Fantasy Story**: Created entirely (all three steps) using **Gemma**.  
+1. **Fantasy Story**: Created entirely (all three steps) using **Gemma 9B**.  
    - Demonstrates rich detail and world-building with consistent quality across all phases.
 
-2. **Science Fiction Story**: Generated fully with **Llama**.  
+2. **Science Fiction Story**: Generated fully with **Llama 8B**.  
    - Highlights Llama’s ability to handle suspense and technical narratives effectively.
 
-3. **Comedy Romance Story**: Produced entirely with **Mistral**.  
+3. **Comedy Story**: Produced entirely with **Mistral 7B**.  
    - This example shows limitations in coherence and creativity, making it the least polished of the three.
 
-**Note:** To achieve better results, we encourage you to experiment with combining different models for each of the three steps (outline, writing, and refinement). For instance, you might use **Gemma** for outlining, **Llama** for writing, and **Mistral** for refinement to play to each model’s strengths and create a more balanced final story.
+**Note:** To achieve better results, I encourage you to experiment with combining different models for each of the three steps (outline, writing, and refinement). For instance, you might use **Gemma** for outlining, **Llama** for writing, and maybe **Mistral** for refinement, to play to each model’s strengths and create a more balanced final story.
 
 ---
 
