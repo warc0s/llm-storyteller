@@ -15,12 +15,9 @@ st.set_page_config(
 # Initialize OpenRouter client
 try:
     client = OpenAI(
+        base_url="https://openrouter.ai/api/v1",
         api_key=st.secrets["OPENROUTER_API_KEY"]
     )
-    # Configure base URL and headers
-    client.base_url = "https://openrouter.ai/api/v1"
-    client.headers["HTTP-Referer"] = "https://github.com/warc0s/LLM_StoryTeller"
-    client.headers["X-Title"] = "LLM StoryTeller"
 except Exception as e:
     st.error(f"Error al inicializar el cliente OpenAI: {str(e)}")
     st.stop()
@@ -146,34 +143,24 @@ MODEL_DISPLAY_NAMES = {
     "Gemma 2 9B": "google/gemma-2-9b-it:free"
 }
 
-def call_llm(prompt, selected_model, temperature=0.7):
+def call_llm(prompt, model, temperature=0.7):
     try:
-        # Crear lista de modelos de fallback (máximo 3 en total incluyendo el principal)
-        all_models = list(MODEL_DISPLAY_NAMES.values())
-        models = [selected_model]  # El modelo principal
-        
-        # Añadir solo 2 modelos más para fallback
-        for model in all_models:
-            if model != selected_model and len(models) < 3:
-                models.append(model)
-
-        completion = client.chat.completions.create(
-            model=selected_model,
-            messages=[
-                {
-                    "role": "user",
-                    "content": prompt,
-                }
-            ],
-            temperature=temperature,
+        response = client.chat.completions.create(
+            extra_headers={
+                "HTTP-Referer": "https://github.com/warc0s/LLM_StoryTeller",
+                "X-Title": "LLM StoryTeller"
+            },
             extra_body={
-                "models": models
-            }
+                "model": model
+            },
+            messages=[
+                {"role": "user", "content": prompt}
+            ],
+            temperature=temperature
         )
-        
-        return completion.choices[0].message.content
+        return response.choices[0].message.content
     except Exception as e:
-        st.error(f"Error al generar la historia: {str(e)}")
+        st.error(f"Error al generar la respuesta: {str(e)}")
         return None
 
 def preprocess_story(text):
