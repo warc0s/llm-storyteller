@@ -263,7 +263,8 @@ if generate:
         - {secondary_character} (personaje secundario)
         - Ubicada en {location}
         - Género: {style}
-        - Tono: {style}
+        - Acción Importante: {key_action}
+        - Longitud: {length}
 
         IMPORTANTE: Responde SOLO con el esquema de la historia. NO repitas estas instrucciones ni uses viñetas."""
 
@@ -280,7 +281,7 @@ Asegúrate de:
 - Crear descripciones vívidas
 - Mantener un ritmo narrativo coherente
 - Usar diálogos naturales cuando sea apropiado
-- Mantener el tono {style} y el género {style}
+- Mantener el género {style} y longitud: {length}
 
 IMPORTANTE: Responde SOLO con la historia final. NO repitas estas instrucciones ni el esquema original."""
 
@@ -295,8 +296,7 @@ IMPORTANTE: Responde SOLO con la historia final. NO repitas estas instrucciones 
 Enfócate en:
 - Mejorar la fluidez y coherencia
 - Pulir el lenguaje y las descripciones
-- Asegurar que mantiene el tono {style}
-- Verificar que sigue siendo fiel al género {style}
+- Mantener el género {style} y longitud: {length}
 
 IMPORTANTE: Responde SOLO con la versión final mejorada. NO repitas estas instrucciones ni la historia original."""
 
